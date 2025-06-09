@@ -6,17 +6,17 @@ A comprehensive collection of AI-powered tools built with Next.js, TypeScript, a
 
 This monorepo contains five AI-powered applications:
 
-1. **AI Writing Toolkit** (Port 3001) - Advanced text processing and writing assistance
-2. **AI Resume Builder** (Port 3002) - Intelligent resume creation and optimization
-3. **AI Report Generator** (Port 3003) - Automated report generation from data
-4. **AI SQL Generator** (Port 3004) - Natural language to SQL query conversion
-5. **AI Assistant Chatbot** (Port 3005) - Conversational AI with knowledge base
+1. **AI Writing Toolkit** (Port 3000) - Advanced text processing and writing assistance
+2. **AI Resume Builder** (Port 3001) - Intelligent resume creation and optimization
+3. **AI Report Generator** (Port 3002) - Automated report generation from data
+4. **AI SQL Generator** (Port 3003) - Natural language to SQL query conversion
+5. **AI Assistant Chatbot** (Port 3004) - Conversational AI with knowledge base
 
 ## 🏗️ Architecture
 
 ### Monorepo Structure
 \`\`\`
-ai-tools-monorepo/
+ai-writing-toolkit/
 ├── apps/                          # Next.js applications
 │   ├── ai-writing-toolkit/
 │   ├── ai-resume-builder/
