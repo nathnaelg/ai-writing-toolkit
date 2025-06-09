@@ -98,11 +98,11 @@ npm run format           # Format code with Prettier
 
 When running in development mode:
 
-- **AI Writing Toolkit**: http://localhost:3001
-- **AI Resume Builder**: http://localhost:3002  
-- **AI Report Generator**: http://localhost:3003
-- **AI SQL Generator**: http://localhost:3004
-- **AI Assistant Chatbot**: http://localhost:3005
+- **AI Writing Toolkit**: http://localhost:3000
+- **AI Resume Builder**: http://localhost:3001  
+- **AI Report Generator**: http://localhost:3002
+- **AI SQL Generator**: http://localhost:3003
+- **AI Assistant Chatbot**: http://localhost:3004
 
 ## 🔧 Development
 
