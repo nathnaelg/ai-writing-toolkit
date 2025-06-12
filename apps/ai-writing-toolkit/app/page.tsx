@@ -35,6 +35,10 @@ interface ProcessingStats {
   operationCounts: Record<string, number>
 }
 
+const baseUrl = process.env.NODE_ENV === "development"
+  ? "http://localhost:3001"
+  : ""
+
 export default function WritingToolkitPage() {
   const [text, setText] = useState("")
   const [operation, setOperation] = useState("")
@@ -51,7 +55,7 @@ export default function WritingToolkitPage() {
 
   const fetchHistory = async () => {
     try {
-      const response = await fetch(`/api/history?userId=${userId}&limit=5`)
+      const response = await fetch(`${baseUrl}/api/history?userId=${userId}&limit=5`)
       const data = await response.json()
       setHistory(data.history || [])
       setStats(data.stats || null)
@@ -65,7 +69,7 @@ export default function WritingToolkitPage() {
 
     setIsProcessing(true)
     try {
-      const response = await fetch("/api/process-text", {
+      const response = await fetch(`${baseUrl}/api/process-text`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

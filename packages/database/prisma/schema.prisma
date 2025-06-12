@@ -1,62 +1,67 @@
+// This is your Prisma schema file configured for PostgreSQL with advanced setup
+
+// Generator Configuration
+// Generates TypeScript client and ensures compatibility with popular environments
+// https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#generator
+
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+  binaryTargets = ["native", "debian-openssl-3.0.x"]
 }
+
+// PostgreSQL Database Connection
+// Uses environment variable to store credentials securely
 
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
 }
 
+// User Model
 model User {
-  id            String         @id @default(cuid())
-  email         String         @unique
-  name          String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  
-  // Writing Toolkit
-  textProcessing TextProcessingHistory[]
-  
-  // Resume Builder
-  resumes       Resume[]
-  
-  // Report Generator
-  reports       Report[]
-  
-  // SQL Generator
-  sqlQueries    SqlQuery[]
-  
-  // Chatbot
-  conversations Conversation[]
-  knowledgeBase KnowledgeBase[]
+  id              String         @id @default(uuid())
+  email           String         @unique
+  name            String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @updatedAt
+
+  // Relations
+  textProcessing  TextProcessingHistory[]
+  resumes         Resume[]
+  reports         Report[]
+  sqlQueries      SqlQuery[]
+  conversations   Conversation[]
+  knowledgeBase   KnowledgeBase[]
 
   @@map("users")
   @@index([email])
   @@index([createdAt])
 }
 
-// Writing Toolkit Models
+// Writing Toolkit Model
 model TextProcessingHistory {
-  id                    Int      @id @default(autoincrement())
-  userId                String
-  originalText          String   @db.Text
-  processedText         String   @db.Text
-  operation             String   @db.VarChar(50)
-  tone                  String?  @db.VarChar(20)
-  wordCountOriginal     Int      @default(0)
-  wordCountProcessed    Int      @default(0)
-  createdAt             DateTime @default(now())
-  
-  user                  User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                  Int      @id @default(autoincrement())
+  userId              String
+  originalText        String   @db.Text
+  processedText       String   @db.Text
+  operation           String   @db.VarChar(50)
+  tone                String?  @db.VarChar(20)
+  wordCountOriginal   Int      @default(0)
+  wordCountProcessed  Int      @default(0)
+  createdAt           DateTime @default(now())
+
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
   @@index([operation])
   @@map("text_processing_history")
 }
 
-// Resume Builder Models
+// Resume Builder Model
 model Resume {
-  id              String   @id @default(cuid())
+  id              String   @id @default(uuid())
   userId          String
   title           String   @db.VarChar(255)
   jobTitle        String   @db.VarChar(255)
@@ -65,19 +70,19 @@ model Resume {
   skills          String   @db.Text
   education       String   @db.Text
   generatedResume String   @db.Text
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
-  
-  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
 
   @@index([userId, createdAt])
   @@index([industry])
   @@map("resumes")
 }
 
-// Report Generator Models
+// Report Generator Model
 model Report {
-  id              String     @id @default(cuid())
+  id              String     @id @default(uuid())
   userId          String
   title           String     @db.VarChar(255)
   reportType      ReportType
@@ -87,7 +92,7 @@ model Report {
   audience        String?    @db.VarChar(100)
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
-  
+
   user            User       @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
@@ -104,9 +109,9 @@ enum ReportType {
   RESEARCH_SUMMARY
 }
 
-// SQL Generator Models
+// SQL Generator Model
 model SqlQuery {
-  id              String    @id @default(cuid())
+  id              String    @id @default(uuid())
   userId          String
   naturalLanguage String    @db.Text
   generatedSql    String    @db.Text
@@ -115,7 +120,7 @@ model SqlQuery {
   explanation     String?   @db.Text
   isValid         Boolean   @default(true)
   createdAt       DateTime  @default(now())
-  
+
   user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
@@ -138,13 +143,13 @@ enum QueryType {
 
 // Chatbot Models
 model Conversation {
-  id        String    @id @default(cuid())
+  id        String    @id @default(uuid())
   userId    String
   title     String    @db.VarChar(255)
   messages  Message[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  
+
   user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, createdAt])
@@ -152,12 +157,12 @@ model Conversation {
 }
 
 model Message {
-  id             String       @id @default(cuid())
+  id             String       @id @default(uuid())
   conversationId String
   role           MessageRole
   content        String       @db.Text
   timestamp      DateTime     @default(now())
-  
+
   conversation   Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 
   @@index([conversationId, timestamp])
@@ -165,7 +170,7 @@ model Message {
 }
 
 model KnowledgeBase {
-  id        String   @id @default(cuid())
+  id        String   @id @default(uuid())
   userId    String
   title     String   @db.VarChar(255)
   content   String   @db.Text
@@ -174,7 +179,7 @@ model KnowledgeBase {
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  
+
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId, isActive])
