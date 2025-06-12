@@ -1,12 +1,31 @@
 {
-  "name": "my-v0-project",
+  "name": "ai-writing-toolkit",
   "version": "0.1.0",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently -n main,writing,resume,report,sql,chatbot \"npm run dev:main\" \"npm run dev:writing\" \"npm run dev:resume\" \"npm run dev:report\" \"npm run dev:sql\" \"npm run dev:chatbot\"",
+    "dev:main": "next dev",
+    "dev:writing": "npm --prefix apps/ai-writing-toolkit run dev",
+    "dev:resume": "npm --prefix apps/ai-resume-builder run dev",
+    "dev:report": "npm --prefix apps/ai-report-generator run dev",
+    "dev:sql": "npm --prefix apps/ai-sql-generator run dev",
+    "dev:chatbot": "npm --prefix apps/ai-assistant-chatbot run dev",
+    "build": "npm run build:packages && turbo build",
+    "build:packages": "turbo run build --filter=@ai-tools/*",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "turbo lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "db:init": "tsx scripts/init-neon-db.ts",
+    "db:seed": "tsx scripts/seed-neon-db.ts",
+    "db:health": "curl -s http://localhost:3000/api/health/database | jq",
+    "setup": "chmod +x scripts/setup.sh && ./scripts/setup.sh",
+    "clean": "turbo clean && rm -rf node_modules",
+    "install:all": "npm install && npm run build:packages",
+    "test": "echo \"No tests specified\" && exit 0"
   },
   "dependencies": {
     "@ai-tools/database": "file:packages/database",
@@ -15,7 +34,7 @@
     "@google/generative-ai": "latest",
     "@hookform/resolvers": "^3.9.1",
     "@neondatabase/serverless": "latest",
-    "@prisma/client": "latest",
+    "@prisma/client": "6.9.0",
     "@radix-ui/react-accordion": "1.2.2",
     "@radix-ui/react-alert-dialog": "1.1.4",
     "@radix-ui/react-aspect-ratio": "1.1.1",
@@ -47,13 +66,13 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "1.0.4",
+    "concurrently": "^9.1.2",
     "date-fns": "^2.30.0",
     "embla-carousel-react": "8.5.1",
     "input-otp": "1.4.1",
     "lucide-react": "^0.454.0",
     "next": "14.2.16",
     "next-themes": "latest",
-    "prisma": "latest",
     "react": "^18",
     "react-day-picker": "8.10.1",
     "react-dom": "^18",
@@ -71,6 +90,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "postcss": "^8.5",
+    "prisma": "6.9.0",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
   }
