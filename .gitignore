@@ -1,4 +1,6 @@
-.env
-.node_modules
-.next
-node_modules
+.env*
+.node_modules*
+.next*
+node_modules*
+env*
+.env.local*
