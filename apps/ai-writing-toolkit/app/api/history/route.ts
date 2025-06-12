@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { prisma } from "@ai-tools/database"
+import {prisma } from "@ai-tools/database"
 
 export async function GET(request: NextRequest) {
   try {

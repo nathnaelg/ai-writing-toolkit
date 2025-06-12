@@ -11,21 +11,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // Get MCP server instance
-    const mcpServer = getMCPServer()
+    // Validate user exists before inserting history
+    const userExists = await prisma.user.findUnique({ where: { id: userId } })
+    if (!userExists) {
+      return NextResponse.json({ error: `User not found: ${userId}` }, { status: 404 })
+    }
 
-    // Process text using MCP server
-    const result = await mcpServer.processText({
-      text,
-      operation,
-      tone,
-    })
+    const mcpServer = getMCPServer()
+    const result = await mcpServer.processText({ text, operation, tone })
 
     if (result.error) {
       return NextResponse.json({ error: result.error }, { status: 500 })
     }
 
-    // Save to database using Prisma directly
     await prisma.textProcessingHistory.create({
       data: {
         userId,
