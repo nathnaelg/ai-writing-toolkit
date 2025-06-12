@@ -4,23 +4,25 @@
   "private": true,
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "prisma": {
+    "schema": "./prisma/schema.prisma"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsc --watch",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:seed": "tsx prisma/seed.ts",
-    "db:studio": "prisma studio"
+    "db:generate": "prisma generate --schema=prisma/schema.prisma",
+    "db:migrate": "prisma migrate dev --schema=prisma/schema.prisma",
+    "db:seed": "ts-node prisma/seed.ts",
+    "generate": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
-    "@prisma/client": "^5.22.0"
+    "@prisma/client": "^6.9.0"
   },
   "devDependencies": {
-    "prisma": "^5.22.0",
+    "@types/node": "^24.0.1",
+    "prisma": "^6.9.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
-  },
-  "prisma": {
-    "seed": "tsx prisma/seed.ts"
   }
 }

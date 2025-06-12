@@ -1,10 +1,19 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "es2018",
+    "lib": [
+      "es2018"
+    ],
     "outDir": "./dist",
     "rootDir": "./src",
     "declaration": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }

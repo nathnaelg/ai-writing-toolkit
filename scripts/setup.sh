@@ -29,7 +29,7 @@ mkdir -p packages/ui/src
 
 # Install dependencies
 echo -e "${BLUE}📦 Installing dependencies...${NC}"
-npm install
+pnpm install
 if [ $? -ne 0 ]; then
   echo -e "${RED}❌ Failed to install dependencies${NC}"
   exit 1
@@ -60,7 +60,7 @@ fi
 # Build packages if they exist
 if [ -d "packages" ]; then
   echo -e "${BLUE}🔨 Building packages...${NC}"
-  npm run build:packages 2>/dev/null || echo -e "${YELLOW}⚠️  Package build skipped (packages not ready yet)${NC}"
+  pnpm run build:packages 2>/dev/null || echo -e "${YELLOW}⚠️  Package build skipped (packages not ready yet)${NC}"
 fi
 
 # Setup database if packages/database exists
@@ -68,13 +68,13 @@ if [ -d "packages/database" ]; then
   echo -e "${BLUE}🗄️  Setting up database...${NC}"
   
   # Generate Prisma client
-  npm run db:generate 2>/dev/null || echo -e "${YELLOW}⚠️  Database generation skipped (schema not ready yet)${NC}"
+  pnpm run db:generate 2>/dev/null || echo -e "${YELLOW}⚠️  Database generation skipped (schema not ready yet)${NC}"
   
   # Push database schema
-  npm run db:push 2>/dev/null || echo -e "${YELLOW}⚠️  Database push skipped (check your DATABASE_URL)${NC}"
+  pnpm run db:push 2>/dev/null || echo -e "${YELLOW}⚠️  Database push skipped (check your DATABASE_URL)${NC}"
   
   # Seed database
-  npm run db:seed 2>/dev/null || echo -e "${YELLOW}⚠️  Database seeding skipped${NC}"
+  pnpm run db:seed 2>/dev/null || echo -e "${YELLOW}⚠️  Database seeding skipped${NC}"
 fi
 
 echo -e "${GREEN}🎉 Setup complete!${NC}"
@@ -82,7 +82,7 @@ echo -e ""
 echo -e "${BLUE}📝 Next steps:${NC}"
 echo -e "1. Update .env.local with your database URL and API keys"
 echo -e "2. Make sure PostgreSQL is running"
-echo -e "3. Run ${GREEN}npm run dev${NC} to start all applications"
+echo -e "3. Run ${GREEN}pnpm run dev${NC} to start all applications"
 echo -e ""
 echo -e "${BLUE}📱 Your applications will be available at:${NC}"
 echo -e "${GREEN}• AI Writing Toolkit:    http://localhost:3001${NC}"
