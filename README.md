@@ -51,7 +51,7 @@ ai-writing-toolkit/
    \`\`\`bash
    git clone <repository-url>
    cd ai-tools-monorepo
-   npm run setup
+   pnpm run setup
    \`\`\`
 
 2. **Configure environment:**
@@ -63,35 +63,35 @@ ai-writing-toolkit/
 
 3. **Start development:**
    \`\`\`bash
-   npm run dev
+   pnpmrun dev
    \`\`\`
 
 ## 📦 Package Scripts
 
 \`\`\`bash
 # Development
-npm run dev              # Start all applications
-npm run dev:writing      # Start writing toolkit only
-npm run dev:resume       # Start resume builder only
-npm run dev:report       # Start report generator only
-npm run dev:sql          # Start SQL generator only
-npm run dev:chatbot      # Start chatbot only
+pnpm run dev              # Start all applications
+pnpm run dev:writing      # Start writing toolkit only
+pnpm run dev:resume       # Start resume builder only
+pnpm run dev:report       # Start report generator only
+pnpm run dev:sql          # Start SQL generator only
+pnpm run dev:chatbot      # Start chatbot only
 
 # Build
-npm run build            # Build all applications
-npm run build:packages   # Build shared packages only
+pnpm run build            # Build all applications
+pnpm run build:packages   # Build shared packages only
 
 # Database
-npm run db:generate      # Generate Prisma client
-npm run db:push          # Push schema to database
-npm run db:seed          # Seed database with sample data
-npm run db:studio        # Open Prisma Studio
+pnpm run db:generate      # Generate Prisma client
+pnpm run db:push          # Push schema to database
+pnpm run db:seed          # Seed database with sample data
+pnpm run db:studio        # Open Prisma Studio
 
 # Utilities
-npm run setup            # Initial project setup
-npm run clean            # Clean all build artifacts
-npm run lint             # Lint all packages
-npm run format           # Format code with Prettier
+pnpm run setup            # Initial project setup
+pnpm run clean            # Clean all build artifacts
+pnpm run lint             # Lint all packages
+pnpm run format           # Format code with Prettier
 \`\`\`
 
 ## 🌐 Application URLs
@@ -115,8 +115,8 @@ When running in development mode:
 ### Database Changes
 \`\`\`bash
 # After modifying schema.prisma
-npm run db:push          # Apply changes
-npm run db:generate      # Update Prisma client
+pnpm run db:push          # Apply changes
+pnpm run db:generate      # Update Prisma client
 \`\`\`
 
 ### Package Dependencies
@@ -130,10 +130,10 @@ Each application can be deployed independently:
 \`\`\`bash
 # Build specific app
 cd apps/ai-writing-toolkit
-npm run build
+pnpm run build
 
 # Or build all
-npm run build
+pnpm run build
 \`\`\`
 
 ## 🤝 Contributing
