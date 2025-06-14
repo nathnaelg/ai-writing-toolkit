@@ -48,27 +48,27 @@ ai-writing-toolkit/
 ### Installation
 
 1. **Clone and setup:**
-   \`\`\`bash
+   ```bash
    git clone <repository-url>
    cd ai-tools-monorepo
    pnpm run setup
-   \`\`\`
+   ```
 
 2. **Configure environment:**
-   \`\`\`bash
+   ```bash
    # Update .env.local with your credentials
    DATABASE_URL="postgresql://username:password@localhost:5432/ai_tools_db"
    GEMINI_API_KEY="your_gemini_api_key_here"
-   \`\`\`
+   ```
 
 3. **Start development:**
-   \`\`\`bash
-   pnpmrun dev
-   \`\`\`
+   ```bash
+   pnpm run dev
+   ```
 
 ## 📦 Package Scripts
 
-\`\`\`bash
+```bash
 # Development
 pnpm run dev              # Start all applications
 pnpm run dev:writing      # Start writing toolkit only
@@ -92,7 +92,7 @@ pnpm run setup            # Initial project setup
 pnpm run clean            # Clean all build artifacts
 pnpm run lint             # Lint all packages
 pnpm run format           # Format code with Prettier
-\`\`\`
+```
 
 ## 🌐 Application URLs
 
@@ -113,11 +113,11 @@ When running in development mode:
 4. App-specific code in respective `apps/` directories
 
 ### Database Changes
-\`\`\`bash
+```bash
 # After modifying schema.prisma
 pnpm run db:push          # Apply changes
 pnpm run db:generate      # Update Prisma client
-\`\`\`
+``` 
 
 ### Package Dependencies
 - Use `workspace:*` for internal package dependencies
@@ -127,14 +127,14 @@ pnpm run db:generate      # Update Prisma client
 
 Each application can be deployed independently:
 
-\`\`\`bash
+```bash
 # Build specific app
 cd apps/ai-writing-toolkit
 pnpm run build
 
 # Or build all
 pnpm run build
-\`\`\`
+```
 
 ## 🤝 Contributing
 
