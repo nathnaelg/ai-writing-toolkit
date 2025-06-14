@@ -15,7 +15,7 @@ This monorepo contains five AI-powered applications:
 ## 🏗️ Architecture
 
 ### Monorepo Structure
-\`\`\`
+```bash
 ai-writing-toolkit/
 ├── apps/                          # Next.js applications
 │   ├── ai-writing-toolkit/
@@ -28,7 +28,7 @@ ai-writing-toolkit/
 │   ├── mcp-server/               # AI processing middleware
 │   └── ui/                       # Shared React components
 └── scripts/                      # Setup and utility scripts
-\`\`\`
+```
 
 ### Technology Stack
 - **Frontend**: Next.js 14, React 18, TypeScript
