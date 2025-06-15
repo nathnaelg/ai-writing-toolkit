@@ -3,16 +3,16 @@
 echo "🚀 Setting up AI Tools Monorepo with Neon PostgreSQL..."
 
 # Install root dependencies
-npm install
+pnpm install
 
 # Install workspace dependencies
-npm run install:all
+pnpm run install:all
 
 # Setup database tables
-npm run db:setup
+pnpm run db:setup
 
 # Seed database with sample data
-npm run db:seed
+pnpm run db:seed
 
 echo "✅ Setup complete!"
 echo ""

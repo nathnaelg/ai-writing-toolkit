@@ -4,19 +4,19 @@ echo "🚀 Setting up complete AI Tools Monorepo..."
 
 # Install dependencies
 echo "📦 Installing dependencies..."
-npm install
+pnpm install
 
 # Install workspace dependencies
 echo "📦 Installing workspace dependencies..."
-npm run install:all
+pnpm run install:all
 
 # Setup database
 echo "🗄️ Setting up database..."
-npm run db:setup
+pnpm run db:setup
 
 # Seed database
 echo "🌱 Seeding database..."
-npm run db:seed
+pnpm run db:seed
 
 echo "✅ Complete setup finished!"
 echo ""

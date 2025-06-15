@@ -1,3 +1,10 @@
+<<<<<<< Updated upstream
 packages:
   - "apps/*"
   - "packages/*"
+=======
+ignoredBuiltDependencies:
+  - '@prisma/client'
+  - '@prisma/engines'
+  - prisma
+>>>>>>> Stashed changes
