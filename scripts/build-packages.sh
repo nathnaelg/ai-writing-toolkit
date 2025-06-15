@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Building packages..."
-
+# Build MCP Server
 # Build MCP Server
 echo "Building MCP Server..."
 cd packages/mcp-server
