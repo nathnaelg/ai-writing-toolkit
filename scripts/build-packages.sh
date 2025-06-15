@@ -22,3 +22,4 @@ npm run build
 cd ../..
 
 echo "All packages built successfully!"
+.
