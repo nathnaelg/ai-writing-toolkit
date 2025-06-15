@@ -22,7 +22,7 @@ export class ResumeMCPClient {
 
   async generateResume(request: ResumeRequest): Promise<ResumeResponse> {
     const prompt = `
-Generate a professional resume based on the following info:
+Generate a professional resume based on the following information:
 
 Job Title: ${request.jobTitle}
 Industry: ${request.industry || "General"}
@@ -31,7 +31,7 @@ Skills: ${request.skills}
 Education: ${request.education}
 ${request.targetJob ? `Target Job: ${request.targetJob}` : ""}
 
-Please create a well-structured resume in markdown format with the following:
+Please create a well-structured resume in markdown format with the following sections:
 1. Professional Summary
 2. Core Skills
 3. Professional Experience
@@ -64,49 +64,6 @@ Format the response as JSON with fields: generatedResume, suggestions (array), m
     } catch (error) {
       console.error("Resume generation error:", error)
       throw new Error("Failed to generate resume")
-    }
-  }
-
-  async optimizeForJob(
-    resume: string,
-    jobDescription: string,
-  ): Promise<{
-    optimizedResume: string
-    improvements: string[]
-  }> {
-    const prompt = `
-Optimize this resume for the following job description:
-
-RESUME:
-${resume}
-
-JOB DESCRIPTION:
-${jobDescription}
-
-Please:
-1. Optimize the resume to better match the job requirements
-2. Add relevant keywords
-3. Highlight matching skills and experience
-4. Provide a list of specific improvements made
-
-Return as JSON with fields: optimizedResume, improvements (array).
-`
-
-    try {
-      const result = await this.model.generateContent(prompt)
-      const response = result.response.text()
-
-      try {
-        return JSON.parse(response)
-      } catch {
-        return {
-          optimizedResume: response,
-          improvements: ["Resume optimized for target role", "Added relevant keywords", "Enhanced skill matching"],
-        }
-      }
-    } catch (error) {
-      console.error("Resume optimization error:", error)
-      throw new Error("Failed to optimize resume")
     }
   }
 }

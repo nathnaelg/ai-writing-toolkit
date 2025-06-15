@@ -111,13 +111,13 @@ npm install
 
 echo ""
 echo -e "${BLUE}🏗️  Building packages...${NC}"
-npm run build:packages
+pnpm run build:packages
 
 echo ""
 echo -e "${BLUE}🗄️  Setting up database schema...${NC}"
 cd packages/database
-npm run db:generate
-npm run db:push
+pnpm run db:generate
+pnpm run db:push
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ Database schema created${NC}"
@@ -128,7 +128,7 @@ fi
 
 echo ""
 echo -e "${BLUE}🌱 Seeding database...${NC}"
-npm run db:seed
+pnpm run db:seed
 
 if [ $? -eq 0 ]; then
     echo -e "${GREEN}✅ Database seeded successfully${NC}"

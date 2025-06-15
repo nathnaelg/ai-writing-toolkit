@@ -47,7 +47,7 @@ if [ ! -f .env.local ]; then
 DATABASE_URL="postgresql://username:password@localhost:5432/ai_tools_db"
 
 # AI API Keys
-GEMINI_API_KEY="your_gemini_api_key_here"
+GEMINI_API_KEY=AIzaSyDa3THY0Mfap-CimursApfbFt40M0BWhPU
 
 # Development Settings
 NODE_ENV="development"
