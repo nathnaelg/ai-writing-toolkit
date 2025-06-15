@@ -240,7 +240,7 @@ export default function SqlGeneratorPage() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="h-5 w-5" />
-                
+                Generated SQL
               </CardTitle>
               <CardDescription>AI-generated SQL query and explanation</CardDescription>
             </CardHeader>
