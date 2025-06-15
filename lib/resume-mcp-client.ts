@@ -22,7 +22,7 @@ export class ResumeMCPClient {
 
   async generateResume(request: ResumeRequest): Promise<ResumeResponse> {
     const prompt = `
-Generate a professional resume based on the following information:
+Generate a professional resume based on the following info:
 
 Job Title: ${request.jobTitle}
 Industry: ${request.industry || "General"}
@@ -31,7 +31,7 @@ Skills: ${request.skills}
 Education: ${request.education}
 ${request.targetJob ? `Target Job: ${request.targetJob}` : ""}
 
-Please create a well-structured resume in markdown format with the following sections:
+Please create a well-structured resume in markdown format with the following:
 1. Professional Summary
 2. Core Skills
 3. Professional Experience
